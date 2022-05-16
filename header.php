@@ -2,15 +2,6 @@
 <?php
 include 'views/php/conexion.php';
 session_start();
-$resultados = mysqli_query($conexion, "SELECT * FROM usuario ");
-    while ($print = mysqli_fetch_array($resultados)) {
-        if ($print['ID_TipoUsuario'] == 1) {
-            echo '<a class="nav-link active" aria-current="page" href="views/php/session_close.php" class="nav_link cerrar" title="Cerrar sesión"> <span class="nav_name">Cerrar sesión</span></a>';
-    }else {
-        echo '<a href="">Iniciar Sesion</a>';
-    }
-    }
-
 ?>
 <html>
 
@@ -65,6 +56,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <!-- header -->
 
 <?php
+/***************************************************************************************************** */
+/* Se necesita validar la sesion activa para que cambie entre el model de iniciar sesio y el de cerrar */
+/***************************************************************************************************** */
 if (isset($_SESSION['ID_Usuario'])) {
     echo "
     <div class='modal fade' id='myModal88' tabindex='-1' role='dialog' aria-labelledby='myModal88' aria-hidden='true'>
