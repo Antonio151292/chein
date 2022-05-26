@@ -17,7 +17,7 @@ include '../php/conexion.php';
           <a class="nav-link active" aria-current="page" href="../admin/registro.php">Registrar producto</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link active" aria-current="page" href="../admin/users.php">Usuarios</a>
         </li>
         <li class="nav-item">
         <a class="nav-link active" aria-current="page" onclick="location.href='../php/session_close.php'" class="nav_link cerrar" title="Cerrar sesión"> <span class="nav_name">Cerrar sesión</span></a>
