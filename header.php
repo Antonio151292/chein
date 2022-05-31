@@ -1,8 +1,14 @@
 <!DOCTYPE html>
 <?php
 include 'views/php/conexion.php';
+session_start();
 
-
+    
+if(isset($_SESSION['ID_TipoUsuario'])){
+    $usuario = $_SESSION['ID_TipoUsuario'];
+    $correo = $_SESSION['correo'];
+    $ID_Usuario = $_SESSION['ID_Usuario'];
+}else {};
 ?>
 <html>
 
@@ -62,8 +68,8 @@ include 'views/php/conexion.php';
 /***************************************************************************************************** */
 /* Se necesita validar la sesion activa para que cambie entre el model de iniciar sesio y el de cerrar */
 /***************************************************************************************************** */
-session_start();
-if (!isset($_SESSION['ID_Usuario'])) {
+
+if (!isset($usuario)) {
     echo "
     <div class='modal fade' id='myModal88' tabindex='-1' role='dialog' aria-labelledby='myModal88' aria-hidden='true'>
     <div class='modal-dialog modal-lg'>
@@ -163,20 +169,20 @@ if (!isset($_SESSION['ID_Usuario'])) {
                 <button type='button' class='close' data-dismiss='modal' aria-hidden='true'>
                     &times;</button>
                 <h4 class='modal-title' id='myModalLabel'>
-                    ¡Inicie sesión ahora!</h4>
+                    ¡Bienvenido!</h4>
             </div>
             <div class='modal-body modal-body-sub'>
                 <div class='row'>
                     <div class='col-md-8 modal_body_left modal_body_left1' style='border-right: 1px dotted #C2C2C2;padding-right:3em;'>
                     <div class='sap_tabs'>
                     <ul>
-                        <li>Perfil</li>
-                        <li>Compras</li>
-                        <li>Facturación</li>
+                        <li><a href='profile.php'>Perfil</a></li>
+                        <li><a href='orden.php'>Compras</a></li>
+                        <li><a href='client-data.php'>Facturación</a></li>
                     </ul>   
                     <br>
                     <div id='horizontalTab' style='display: block; width: 100%; margin: 0px;'>
-                        <a href='views/php/session_close.php'' class='nav_link cerrar' title='Cerrar sesión'> <i class='fas fa-sign-out-alt' style='font-size: 1.5rem'></i> <span class='nav_name'>Cerrar sesión</span></a>
+                        <a href='views/php/session_close.php' class='nav_link cerrar' title='Cerrar sesión'> <i class='fas fa-sign-out-alt' style='font-size: 1.5rem'></i> <span class='nav_name'>Cerrar sesión</span></a>
                     </div>
                 </div>
                     </div>
@@ -200,16 +206,7 @@ if (!isset($_SESSION['ID_Usuario'])) {
         <div class="w3l_logo text-center">
             <h1><a href="index.php">CHEIN<span>Lo mejor en moda</span></a></h1>
         </div>
-        <div class="search">
-            <input class="search_box" type="checkbox" id="search_box">
-            <label class="icon-search" for="search_box"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></label>
-            <div class="search_form">
-                <form action="#" method="post">
-                    <input type="text" name="Search" placeholder="Buscar...">
-                    <input type="submit" value="Send">
-                </form>
-            </div>
-        </div>
+        
         <div class="cart box_1">
             <a href="checkout.php">
                 <div class="total">
@@ -281,7 +278,6 @@ if (!isset($_SESSION['ID_Usuario'])) {
                         </ul>
                     </li>
                     <li><a href="about.php">Sobre nosotros</a></li>
-                    <li><a href="short-codes.php">Códigos cortos</a></li>
                     <li><a href="mail.php">Contacto</a></li>
                 </ul>
             </div>

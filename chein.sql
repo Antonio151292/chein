@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-05-2022 a las 19:59:21
+-- Tiempo de generación: 31-05-2022 a las 18:37:58
 -- Versión del servidor: 10.4.22-MariaDB
 -- Versión de PHP: 8.1.2
 
@@ -32,15 +32,6 @@ CREATE TABLE `categoria_de_producto` (
   `Categoria` varchar(255) COLLATE utf8_spanish2_ci NOT NULL COMMENT 'Categoría',
   `Descripcion` varchar(255) COLLATE utf8_spanish2_ci NOT NULL COMMENT 'Descripción de categoría'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
-
---
--- Volcado de datos para la tabla `categoria_de_producto`
---
-
-INSERT INTO `categoria_de_producto` (`ID_CategoriaProducto`, `Categoria`, `Descripcion`) VALUES
-(13, 'Caballero', 'Productos para caballero'),
-(14, 'Dama', 'Productos para dama'),
-(15, 'Niña', 'Productos para niña');
 
 -- --------------------------------------------------------
 
@@ -74,6 +65,13 @@ CREATE TABLE `datos_de_envio` (
   `CP` varchar(255) COLLATE utf8_spanish2_ci NOT NULL COMMENT 'CP'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
+--
+-- Volcado de datos para la tabla `datos_de_envio`
+--
+
+INSERT INTO `datos_de_envio` (`ID_DatosDeEnvio`, `ID_Usuario`, `Direccion1`, `Direccion2`, `Ciudad`, `Estado`, `Pais`, `CP`) VALUES
+(1, 1, '', '', '', '', '', '');
+
 -- --------------------------------------------------------
 
 --
@@ -91,6 +89,13 @@ CREATE TABLE `datos_de_facturacion` (
   `CP` varchar(255) COLLATE utf8_spanish2_ci NOT NULL COMMENT 'CP'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
+--
+-- Volcado de datos para la tabla `datos_de_facturacion`
+--
+
+INSERT INTO `datos_de_facturacion` (`ID_DatosDeFacturacion`, `ID_Usuario`, `Direccion1`, `Direccion2`, `Ciudad`, `Estado`, `Pais`, `CP`) VALUES
+(1, 1, '', '', '', '', '', '');
+
 -- --------------------------------------------------------
 
 --
@@ -106,6 +111,13 @@ CREATE TABLE `datos_de_usuario` (
   `Telefono` varchar(255) COLLATE utf8_spanish2_ci NOT NULL COMMENT 'Teléfono'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
+--
+-- Volcado de datos para la tabla `datos_de_usuario`
+--
+
+INSERT INTO `datos_de_usuario` (`ID_DatosDeUsuario`, `ID_Usuario`, `Nombre`, `ApellidoP`, `ApellidoM`, `Telefono`) VALUES
+(1, 1, '', '', '', '');
+
 -- --------------------------------------------------------
 
 --
@@ -116,17 +128,6 @@ CREATE TABLE `marca` (
   `ID_Marca` int(11) NOT NULL,
   `Marca` varchar(255) COLLATE utf8_spanish2_ci NOT NULL COMMENT 'Marca'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
-
---
--- Volcado de datos para la tabla `marca`
---
-
-INSERT INTO `marca` (`ID_Marca`, `Marca`) VALUES
-(5, 'Nike'),
-(6, 'Adidas'),
-(7, 'Puma'),
-(8, 'Hollister'),
-(9, 'Cuidado con el perro');
 
 -- --------------------------------------------------------
 
@@ -142,20 +143,10 @@ CREATE TABLE `producto` (
   `ID_Marca` int(11) NOT NULL COMMENT 'ID Marca',
   `Nombre` varchar(255) COLLATE utf8_spanish2_ci NOT NULL COMMENT 'Nombre producto',
   `Stock` varchar(255) COLLATE utf8_spanish2_ci NOT NULL COMMENT 'Stock',
-  `Precio` varchar(255) COLLATE utf8_spanish2_ci NOT NULL,
+  `Precio` varchar(255) COLLATE utf8_spanish2_ci NOT NULL COMMENT 'Precio',
   `Descripcion` varchar(255) COLLATE utf8_spanish2_ci NOT NULL COMMENT 'Descripción',
   `Imagen` varchar(255) COLLATE utf8_spanish2_ci NOT NULL COMMENT 'Imagen'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
-
---
--- Volcado de datos para la tabla `producto`
---
-
-INSERT INTO `producto` (`ID_Producto`, `ID_CategoriaProducto`, `ID_TipoProducto`, `ID_Talla`, `ID_Marca`, `Nombre`, `Stock`, `Precio`, `Descripcion`, `Imagen`) VALUES
-(37, 13, 2, 3, 9, 'Pantalon cuidado con el perro ', '4', '550', 'Pantalon cuidado con el perro ', '14052022030535.jpg'),
-(38, 13, 5, 3, 5, 'Tenis Casual Nike WearAllDay', '7', '800', 'Tenis Casual Nike WearAllDay', '14052022030537.jpg'),
-(39, 14, 4, 3, 8, 'Vestido de noche', '3', '2000', 'Vestido de noche color negro', '15052022060527.jpg'),
-(40, 15, 4, 2, 8, 'Vestido Girls Attitude', '6', '400', 'Vestido de niña para eventos ', '15052022190552.jpg');
 
 -- --------------------------------------------------------
 
@@ -169,16 +160,6 @@ CREATE TABLE `talla` (
   `Descripcion` varchar(255) COLLATE utf8_spanish2_ci NOT NULL COMMENT 'Descripción'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
---
--- Volcado de datos para la tabla `talla`
---
-
-INSERT INTO `talla` (`ID_Talla`, `Talla`, `Descripcion`) VALUES
-(2, 'S', 'Chica'),
-(3, 'M', 'Mediana'),
-(4, 'L', 'Grande'),
-(5, 'XL', 'Extra grande');
-
 -- --------------------------------------------------------
 
 --
@@ -190,16 +171,6 @@ CREATE TABLE `tipo_de_producto` (
   `TipoProducto` varchar(255) COLLATE utf8_spanish2_ci NOT NULL COMMENT 'Nombre',
   `Descripcion` varchar(255) COLLATE utf8_spanish2_ci NOT NULL COMMENT 'Descripción'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
-
---
--- Volcado de datos para la tabla `tipo_de_producto`
---
-
-INSERT INTO `tipo_de_producto` (`ID_TipoProducto`, `TipoProducto`, `Descripcion`) VALUES
-(2, 'Pantalon', 'Pantalon'),
-(3, 'Calzado', 'Calzado'),
-(4, 'Vestido', 'Vestido'),
-(5, 'Tenis', 'Tenis');
 
 -- --------------------------------------------------------
 
@@ -239,8 +210,7 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`ID_Usuario`, `ID_TipoUsuario`, `correo`, `password`) VALUES
-(2, 1, 'usuario@mail.com', '7c4a8d09ca3762af61e59520943dc26494f8941b'),
-(3, 2, 'admin@mail.com', '7c4a8d09ca3762af61e59520943dc26494f8941b');
+(1, 2, 'admin@mail.com', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220');
 
 --
 -- Índices para tablas volcadas
@@ -338,7 +308,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `categoria_de_producto`
 --
 ALTER TABLE `categoria_de_producto`
-  MODIFY `ID_CategoriaProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `ID_CategoriaProducto` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `compra`
@@ -350,43 +320,43 @@ ALTER TABLE `compra`
 -- AUTO_INCREMENT de la tabla `datos_de_envio`
 --
 ALTER TABLE `datos_de_envio`
-  MODIFY `ID_DatosDeEnvio` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_DatosDeEnvio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `datos_de_facturacion`
 --
 ALTER TABLE `datos_de_facturacion`
-  MODIFY `ID_DatosDeFacturacion` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_DatosDeFacturacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `datos_de_usuario`
 --
 ALTER TABLE `datos_de_usuario`
-  MODIFY `ID_DatosDeUsuario` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_DatosDeUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `marca`
 --
 ALTER TABLE `marca`
-  MODIFY `ID_Marca` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `ID_Marca` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `producto`
 --
 ALTER TABLE `producto`
-  MODIFY `ID_Producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `ID_Producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `talla`
 --
 ALTER TABLE `talla`
-  MODIFY `ID_Talla` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ID_Talla` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_de_producto`
 --
 ALTER TABLE `tipo_de_producto`
-  MODIFY `ID_TipoProducto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ID_TipoProducto` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_de_usuario`
@@ -398,7 +368,7 @@ ALTER TABLE `tipo_de_usuario`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `ID_Usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID_Usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restricciones para tablas volcadas

@@ -128,7 +128,7 @@ include 'menu.php';
                         <label for="formFile" class="form-label">Imagen</label>
                         <div class="input-group">
                             <div class="input-group-text" id="btnGroupAddon"><i class="fas fa-image"></i></div>
-                            <input name="ImagenProducto" class="form-control" type="file" id="formFile">
+                            <input require name="ImagenProducto" class="form-control" type="file" id="formFile">
                         </div>
                     </div>
                 </div>
@@ -141,16 +141,16 @@ include 'menu.php';
                 <table class="table table table-striped table-hover">
                     <thead>
                         <tr>
-                            <th scope="col"><i class="fad fa-signature"></i> ID</th>
-                            <th scope="col"><i class="fad fa-city"></i> Nombre</th>
-                            <th scope="col"><i class="fad fa-city"></i> Stock</th>
-                            <th scope="col"><i class="fad fa-city"></i> Descripción</th>
-                            <th scope="col"><i class="fad fa-signature"></i> Categoria</th>
-                            <th scope="col"><i class="fad fa-city"></i> Tipo</th>
-                            <th scope="col"><i class="fad fa-city"></i> Talla</th>
-                            <th scope="col"><i class="fad fa-city"></i> Marca</th>
-                            <th scope="col"><i class="fad fa-city"></i> Imagen</th>
-                            <th scope="col"><i class="fad fa-city"></i> Acción</th>
+                            <th scope="col"><i class="fas fa-align-left"></i> ID</th>
+                            <th scope="col"><i class="fas fa-align-left"></i> Nombre</th>
+                            <th scope="col"><i class="fas fa-align-left"></i> Stock</th>
+                            <th scope="col"><i class="fas fa-align-left"></i> Descripción</th>
+                            <th scope="col"><i class="fas fa-align-left"></i> Categoria</th>
+                            <th scope="col"><i class="fas fa-align-left"></i> Tipo</th>
+                            <th scope="col"><i class="fas fa-align-left"></i> Talla</th>
+                            <th scope="col"><i class="fas fa-align-left"></i> Marca</th>
+                            <th scope="col"><i class="fas fa-align-left"></i> Imagen</th>
+                            <th scope="col"><i class="fas fa-align-left"></i> Acción</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -163,9 +163,9 @@ include 'menu.php';
                             $marca = $print['ID_Marca'];
                             $imagen = $print['Imagen'];
                             $ID = $print['ID_Producto'];
-                            $Nombre=$print['Nombre'];
-                            $Stock=$print['Stock'];
-                            $Descripcion=$print['Descripcion'];
+                            $Nombre = $print['Nombre'];
+                            $Stock = $print['Stock'];
+                            $Descripcion = $print['Descripcion'];
                             $resultados2 = mysqli_query($conexion, "SELECT * FROM categoria_de_producto WHERE ID_CategoriaProducto = $categoria");
                             while ($print = mysqli_fetch_array($resultados2)) {
                                 $categoria2 = $print['Categoria'];
@@ -185,7 +185,7 @@ include 'menu.php';
 
                             echo "
                             <tr>
-                                <td>" . $ID. "</td>
+                                <td>" . $ID . "</td>
                                 <td>" . $Nombre . "</td>
                                 <td>" . $Stock . "</td>
                                 <td>" . $Descripcion . "</td>
@@ -196,7 +196,7 @@ include 'menu.php';
                             
                     <td>" . $imagen . "</td>
                     <td> <button type='submit' name='delete' value='$ID' class='btn btn-outline-danger'><i class='fas fa-trash'></i></button>
-                     <a href='admin-edit-user.php?ID_CategoriaProducto=" . $ID . "' name='edit-user' value='$ID' class='btn btn-outline-primary'><i class='fas fa-pen'></i></a></td>
+                    </td>
                 </tr>
                 ";
                         }
@@ -208,37 +208,29 @@ include 'menu.php';
                                 $resultado = mysqli_query($conexion, "DELETE FROM producto WHERE ID_Producto = $borrar");
                                 $dir = "../../img/";
                                 $file = $print['Imagen'];
-                                unlink($dir . $file);
-                                echo "<script>
-                        window.location = window.location='registro.php';
-                        setTimeout(5000);
-                        const Toast = Swal.mixin({
-                            toast: true,
-                            position: 'top-end',
-                            showConfirmButton: false,
-                            timer: 6000,
-                            timerProgressBar: true,
-                            didOpen: (toast) => {
-                              toast.addEventListener('mouseenter', Swal.stopTimer)
-                              toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                unlink($dir . $file);  
                             }
-                          })
-                          
-                          Toast.fire({
-                            icon: 'success',
-                            title: 'Se elimino con exito'
-                          });
-                           
-                          </script>";
-                            }
+                            echo "
+                            <body>
+                                <script>
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Eliminado satisfactoriamente',
+                                    showConfirmButton: false,
+                                })
+                                </script>
+                            </body>
+                            <script>
+                                function redireccionar(){
+                                window.location.href = 'registro.php';}
+                                setTimeout('redireccionar()', 1500);
+                            </script>";
                         }
                         ?>
                     </tbody>
                 </table>
             </form>
         </div>
-
-
     </div>
     <div class="tab-pane fade" id="CategoriaProducto" role="tabpanel" aria-labelledby="CategoriaProducto-tab">
         <!--Categoria de producto -->
@@ -270,10 +262,10 @@ include 'menu.php';
             <table class="table table table-striped table-hover">
                 <thead>
                     <tr>
-                        <th scope="col"><i class="fad fa-signature"></i> ID</th>
-                        <th scope="col"><i class="fad fa-signature"></i> Categoria</th>
-                        <th scope="col"><i class="fad fa-city"></i> Descripción</th>
-                        <th scope="col"><i class="fad fa-city"></i> Acción</th>
+                        <th scope="col"><i class="fas fa-align-left"></i> ID</th>
+                        <th scope="col"><i class="fas fa-align-left"></i> Categoria</th>
+                        <th scope="col"><i class="fas fa-align-left"></i> Descripción</th>
+                        <th scope="col"><i class="fas fa-align-left"></i> Acción</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -286,7 +278,7 @@ include 'menu.php';
                     <td>" . $print['Categoria'] . "</td>
                     <td>" . $print['Descripcion'] . "</td>
                     <td> <button type='submit' name='deletecategoria' value='$print[ID_CategoriaProducto]' class='btn btn-outline-danger'><i class='fas fa-trash'></i></button>
-                     <a href='admin-edit-user.php?ID_CategoriaProducto=" . $print['ID_CategoriaProducto'] . "' name='edit-user' value='$print[ID_CategoriaProducto]' class='btn btn-outline-primary'><i class='fas fa-pen'></i></a></td>
+                    </td>
                 </tr>
                 ";
                     }
@@ -294,32 +286,30 @@ include 'menu.php';
                     if (isset($_POST['deletecategoria'])) {
 
                         $borrar = $_POST['deletecategoria'];
+
+                        $resultados = mysqli_query($conexion, "SELECT * FROM producto WHERE ID_CategoriaProducto = $borrar");
+                        while ($print = mysqli_fetch_array($resultados)) {
+                            $resultado = mysqli_query($conexion, "DELETE FROM producto WHERE ID_CategoriaProducto = $borrar");
+                            $dir = "../../img/";
+                            $file = $print['Imagen'];
+                            unlink($dir . $file);
+                        }
                         $resultados = mysqli_query($conexion, "DELETE FROM categoria_de_producto WHERE ID_CategoriaProducto = $borrar");
-                        echo "<script>
-                        window.location = window.location='registro.php';
-                        setTimeout(5000);
-                        const Toast = Swal.mixin({
-                            toast: true,
-                            position: 'top-end',
-                            showConfirmButton: false,
-                            timer: 6000,
-                            timerProgressBar: true,
-                            didOpen: (toast) => {
-                              toast.addEventListener('mouseenter', Swal.stopTimer)
-                              toast.addEventListener('mouseleave', Swal.resumeTimer)
-                            }
-                          })
-                          
-                          Toast.fire({
-                            icon: 'success',
-                            title: 'Se elimino con exito'
-                          });
-                           
-                          </script>";
-                        echo "<script>
-                          
-                          
-                          </script>";
+                        echo "
+                            <body>
+                                <script>
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Eliminado satisfactoriamente',
+                                    showConfirmButton: false,
+                                })
+                                </script>
+                            </body>
+                            <script>
+                                function redireccionar(){
+                                window.location.href = 'registro.php';}
+                                setTimeout('redireccionar()', 1500);
+                            </script>";
                     }
                     ?>
                 </tbody>
@@ -349,9 +339,9 @@ include 'menu.php';
                 <table class="table table table-striped table-hover">
                     <thead>
                         <tr>
-                            <th scope="col"><i class="fad fa-signature"></i> ID</th>
-                            <th scope="col"><i class="fad fa-signature"></i> Categoria</th>
-                            <th scope="col"><i class="fad fa-city"></i> Acción</th>
+                            <th scope="col"><i class="fas fa-align-left"></i> ID</th>
+                            <th scope="col"><i class="fas fa-align-left"></i> Categoria</th>
+                            <th scope="col"><i class="fas fa-align-left"></i> Acción</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -363,7 +353,7 @@ include 'menu.php';
                     <td>" . $print['ID_Marca'] . "</td>
                     <td>" . $print['Marca'] . "</td>
                     <td> <button type='submit' name='deletemarca' value='$print[ID_Marca]' class='btn btn-outline-danger'><i class='fas fa-trash'></i></button>
-                     <a href='admin-edit-user.php?ID_Marca=" . $print['ID_Marca'] . "' name='edit-user' value='$print[ID_Marca]' class='btn btn-outline-primary'><i class='fas fa-pen'></i></a></td>
+                     </td>
                 </tr>
                 ";
                         }
@@ -371,32 +361,29 @@ include 'menu.php';
                         if (isset($_POST['deletemarca'])) {
 
                             $borrarmarca     = $_POST['deletemarca'];
-                            $resultados = mysqli_query($conexion, "DELETE FROM marca WHERE ID_Marca = $borrarmarca");
-                            echo "<script>
-                        window.location = window.location='registro.php';
-                        setTimeout(5000);
-                        const Toast = Swal.mixin({
-                            toast: true,
-                            position: 'top-end',
-                            showConfirmButton: false,
-                            timer: 6000,
-                            timerProgressBar: true,
-                            didOpen: (toast) => {
-                              toast.addEventListener('mouseenter', Swal.stopTimer)
-                              toast.addEventListener('mouseleave', Swal.resumeTimer)
+                            $resultados = mysqli_query($conexion, "SELECT * FROM producto WHERE ID_Marca = $borrarmarca");
+                            while ($print = mysqli_fetch_array($resultados)) {
+                                $resultado = mysqli_query($conexion, "DELETE FROM producto WHERE ID_Marca = $borrarmarca");
+                                $dir = "../../img/";
+                                $file = $print['Imagen'];
+                                unlink($dir . $file);
                             }
-                          })
-                          
-                          Toast.fire({
-                            icon: 'success',
-                            title: 'Se elimino con exito'
-                          });
-                           
-                          </script>";
-                            echo "<script>
-                          
-                          
-                          </script>";
+                            $resultados = mysqli_query($conexion, "DELETE FROM marca WHERE ID_Marca = $borrarmarca");
+                            echo "
+                            <body>
+                                <script>
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Eliminado satisfactoriamente',
+                                    showConfirmButton: false,
+                                })
+                                </script>
+                            </body>
+                            <script>
+                                function redireccionar(){
+                                window.location.href = 'registro.php';}
+                                setTimeout('redireccionar()', 1500);
+                            </script>";
                         }
                         ?>
                     </tbody>
@@ -436,10 +423,10 @@ include 'menu.php';
                 <table class="table table table-striped table-hover">
                     <thead>
                         <tr>
-                            <th scope="col"><i class="fad fa-signature"></i> ID</th>
-                            <th scope="col"><i class="fad fa-signature"></i> Tipo</th>
-                            <th scope="col"><i class="fad fa-city"></i> Descripción</th>
-                            <th scope="col"><i class="fad fa-city"></i> Acción</th>
+                            <th scope="col"><i class="fas fa-align-left"></i> ID</th>
+                            <th scope="col"><i class="fas fa-align-left"></i> Tipo</th>
+                            <th scope="col"><i class="fas fa-align-left"></i> Descripción</th>
+                            <th scope="col"><i class="fas fa-align-left"></i> Acción</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -452,7 +439,7 @@ include 'menu.php';
                     <td>" . $print['TipoProducto'] . "</td>
                     <td>" . $print['Descripcion'] . "</td>
                     <td> <button type='submit' name='deletetipo' value='$print[ID_TipoProducto]' class='btn btn-outline-danger'><i class='fas fa-trash'></i></button>
-                     <a href='admin-edit-user.php?ID_CategoriaProducto=" . $print['ID_TipoProducto'] . "' name='edit-user' value='$print[ID_TipoProducto]' class='btn btn-outline-primary'><i class='fas fa-pen'></i></a></td>
+                     </td>
                 </tr>
                 ";
                         }
@@ -460,32 +447,30 @@ include 'menu.php';
                         if (isset($_POST['deletetipo'])) {
 
                             $borrar = $_POST['deletetipo'];
-                            $resultados = mysqli_query($conexion, "DELETE FROM tipo_de_producto WHERE ID_TipoProducto = $borrar");
-                            echo "<script>
-                        window.location = window.location='registro.php';
-                        setTimeout(5000);
-                        const Toast = Swal.mixin({
-                            toast: true,
-                            position: 'top-end',
-                            showConfirmButton: false,
-                            timer: 6000,
-                            timerProgressBar: true,
-                            didOpen: (toast) => {
-                              toast.addEventListener('mouseenter', Swal.stopTimer)
-                              toast.addEventListener('mouseleave', Swal.resumeTimer)
+
+                            $resultados = mysqli_query($conexion, "SELECT * FROM producto WHERE ID_TipoProducto = $borrar");
+                            while ($print = mysqli_fetch_array($resultados)) {
+                                $resultado = mysqli_query($conexion, "DELETE FROM producto WHERE ID_TipoProducto = $borrar");
+                                $dir = "../../img/";
+                                $file = $print['Imagen'];
+                                unlink($dir . $file);
                             }
-                          })
-                          
-                          Toast.fire({
-                            icon: 'success',
-                            title: 'Se elimino con exito'
-                          });
-                           
-                          </script>";
-                            echo "<script>
-                          
-                          
-                          </script>";
+                            $resultados = mysqli_query($conexion, "DELETE FROM tipo_de_producto WHERE ID_TipoProducto = $borrar");
+                            echo "
+                            <body>
+                                <script>
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Eliminado satisfactoriamente',
+                                    showConfirmButton: false,
+                                })
+                                </script>
+                            </body>
+                            <script>
+                                function redireccionar(){
+                                window.location.href = 'registro.php';}
+                                setTimeout('redireccionar()', 1500);
+                            </script>";
                         }
                         ?>
                     </tbody>
@@ -522,10 +507,10 @@ include 'menu.php';
                 <table class="table table table-striped table-hover">
                     <thead>
                         <tr>
-                            <th scope="col"><i class="fad fa-signature"></i> ID</th>
-                            <th scope="col"><i class="fad fa-signature"></i> Talla</th>
-                            <th scope="col"><i class="fad fa-city"></i> Descripción</th>
-                            <th scope="col"><i class="fad fa-city"></i> Acción</th>
+                            <th scope="col"><i class="fas fa-align-left"></i> ID</th>
+                            <th scope="col"><i class="fas fa-align-left"></i> Talla</th>
+                            <th scope="col"><i class="fas fa-align-left"></i> Descripción</th>
+                            <th scope="col"><i class="fas fa-align-left"></i> Acción</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -538,7 +523,7 @@ include 'menu.php';
                     <td>" . $print['Talla'] . "</td>
                     <td>" . $print['Descripcion'] . "</td>
                     <td> <button type='submit' name='deletetalla' value='$print[ID_Talla]' class='btn btn-outline-danger'><i class='fas fa-trash'></i></button>
-                     <a href='admin-edit-user.php?ID_Talla=" . $print['ID_Talla'] . "' name='edit-user' value='$print[ID_Talla]' class='btn btn-outline-primary'><i class='fas fa-pen'></i></a></td>
+                     </td>
                 </tr>
                 ";
                         }
@@ -546,32 +531,31 @@ include 'menu.php';
                         if (isset($_POST['deletetalla'])) {
 
                             $borrar = $_POST['deletetalla'];
-                            $resultados = mysqli_query($conexion, "DELETE FROM talla WHERE ID_Talla = $borrar");
-                            echo "<script>
-                        window.location = window.location='registro.php';
-                        setTimeout(5000);
-                        const Toast = Swal.mixin({
-                            toast: true,
-                            position: 'top-end',
-                            showConfirmButton: false,
-                            timer: 6000,
-                            timerProgressBar: true,
-                            didOpen: (toast) => {
-                              toast.addEventListener('mouseenter', Swal.stopTimer)
-                              toast.addEventListener('mouseleave', Swal.resumeTimer)
+
+                            $resultados = mysqli_query($conexion, "SELECT * FROM producto WHERE ID_Talla = $borrar");
+                            while ($print = mysqli_fetch_array($resultados)) {
+                                $resultado = mysqli_query($conexion, "DELETE FROM producto WHERE ID_Talla = $borrar");
+                                $dir = "../../img/";
+                                $file = $print['Imagen'];
+                                unlink($dir . $file);
+                                
                             }
-                          })
-                          
-                          Toast.fire({
-                            icon: 'success',
-                            title: 'Se elimino con exito'
-                          });
-                           
-                          </script>";
-                            echo "<script>
-                          
-                          
-                          </script>";
+                            $resultados = mysqli_query($conexion, "DELETE FROM talla WHERE ID_Talla = $borrar");
+                            echo "
+                            <body>
+                                <script>
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Eliminado satisfactoriamente',
+                                    showConfirmButton: false,
+                                })
+                                </script>
+                            </body>
+                            <script>
+                                function redireccionar(){
+                                window.location.href = 'registro.php';}
+                                setTimeout('redireccionar()', 1500);
+                            </script>";
                         }
                         ?>
                     </tbody>

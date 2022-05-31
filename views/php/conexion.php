@@ -1,3 +1,4 @@
+<script src="../../style/sweetalert/dist/sweetalert2.all.js"></script>
 <?php
 $server = "localhost";
 $user = "root";

@@ -11,8 +11,18 @@ $sqlusuario = "INSERT into categoria_de_producto(Categoria,Descripcion)
    VALUES ('$NombreCategoria','$DescripcionCategoria')";
 $INSERCION = mysqli_query($conexion, $sqlusuario);
 echo "
-<script>
-   alert('Registro exitoso');
-   window.location = '../admin/registro.php#CategoriaProducto'
-</script>";
+    <body>
+        <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Registro éxitoso',
+            showConfirmButton: false,
+        })
+        </script>
+    </body>
+    <script>
+        function redireccionar(){
+        window.location.href = '../admin/registro.php';}
+        setTimeout('redireccionar()', 1000);
+    </script>";
 ?>

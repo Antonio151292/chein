@@ -48,18 +48,18 @@ include 'header.php';
             <div class="col-md-7 wthree_banner_bottom_right">
                 <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
                     <ul id="myTab" class="nav nav-tabs" role="tablist">
-                        <li role="presentation" class="active"><a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home">T-shirts</a></li>
-                        <li role="presentation"><a href="#skirts" role="tab" id="skirts-tab" data-toggle="tab" aria-controls="skirts">Skirts</a></li>
-                        <li role="presentation"><a href="#watches" role="tab" id="watches-tab" data-toggle="tab" aria-controls="watches">Watches</a></li>
-                        <li role="presentation"><a href="#sandals" role="tab" id="sandals-tab" data-toggle="tab" aria-controls="sandals">Sandals</a></li>
-                        <li role="presentation"><a href="#jewellery" role="tab" id="jewellery-tab" data-toggle="tab" aria-controls="jewellery">Jewellery</a></li>
+                        <li role="presentation" class="active"><a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home">Camisas</a></li>
+                        <li role="presentation"><a href="#skirts" role="tab" id="skirts-tab" data-toggle="tab" aria-controls="skirts">Faldas</a></li>
+                        <li role="presentation"><a href="#watches" role="tab" id="watches-tab" data-toggle="tab" aria-controls="watches">Relojes</a></li>
+                        <li role="presentation"><a href="#sandals" role="tab" id="sandals-tab" data-toggle="tab" aria-controls="sandals">Sandalias</a></li>
+                        <li role="presentation"><a href="#jewellery" role="tab" id="jewellery-tab" data-toggle="tab" aria-controls="jewellery">Joyería</a></li>
                     </ul>
                     <div id="myTabContent" class="tab-content">
                         <div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
                             <div class="agile_ecommerce_tabs">
 
                                 <?php
-                                $resultados = mysqli_query($conexion, "SELECT * FROM producto");
+                                $resultados = mysqli_query($conexion, "SELECT * FROM producto LIMIT 3");
                                 while ($print = mysqli_fetch_array($resultados)) {
                                     $categoria = $print['ID_CategoriaProducto'];
                                     $producto = $print['ID_TipoProducto'];
@@ -71,7 +71,7 @@ include 'header.php';
                                     $ID_Producto = $print['ID_Producto'];
                                     $Nombre = $print['Nombre'];
                                     $Descripcion = $print['Descripcion'];
-                                    $resultados3 = mysqli_query($conexion, "SELECT * FROM tipo_de_producto WHERE ID_TipoProducto = $producto");
+                                    $resultados3 = mysqli_query($conexion, "SELECT * FROM tipo_de_producto WHERE ID_TipoProducto = $producto ");
                                     while ($print = mysqli_fetch_array($resultados3)) {
                                         $tipoproducto = $print['TipoProducto'];
                                     }
@@ -798,11 +798,11 @@ include 'header.php';
     <div class="banner-bottom1">
         <div class="agileinfo_banner_bottom1_grids">
             <div class="col-md-7 agileinfo_banner_bottom1_grid_left">
-                <h3>Grand Opening Event With flat<span>20% <i>Discount</i></span></h3>
-                <a href="products.php">Shop Now</a>
+                <h3>Gran inauguración con <span>20% <i>de descuento</i></span></h3>
+                <a href="products.php">comprar ahora</a>
             </div>
             <div class="col-md-5 agileinfo_banner_bottom1_grid_right">
-                <h4>hot deal</h4>
+                <h4>hot sale</h4>
                 <div class="timer_wrap">
                     <div id="counter"> </div>
                 </div>
@@ -817,7 +817,7 @@ include 'header.php';
     <!-- special-deals -->
     <div class="special-deals">
         <div class="container">
-            <h2>Special Deals</h2>
+            <h2>Ofertas especiales</h2>
             <div class="w3agile_special_deals_grids">
                 <div class="col-md-7 w3agile_special_deals_grid_left">
                     <div class="w3agile_special_deals_grid_left_grid">
@@ -880,7 +880,7 @@ include 'header.php';
     <!-- new-products -->
     <div class="new-products">
         <div class="container">
-            <h3>New Products</h3>
+            <h3>Nuevos Productos</h3>
             <div class="agileinfo_new_products_grids">
                 <div class="col-md-3 agileinfo_new_products_grid">
                     <div class="agile_ecommerce_tab_left agileinfo_new_products_grid1">
@@ -994,7 +994,7 @@ include 'header.php';
     <!-- top-brands -->
     <div class="top-brands">
         <div class="container">
-            <h3>Top Brands</h3>
+            <h3>Top Marcas</h3>
             <div class="sliderfig">
                 <ul id="flexiselDemo1">
                     <li>

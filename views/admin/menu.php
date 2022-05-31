@@ -1,6 +1,36 @@
 <?php
 include 'header.php';
 include '../php/conexion.php';
+session_start();
+if(isset($_SESSION['ID_TipoUsuario'])){
+  $usuario = $_SESSION['ID_TipoUsuario'];
+  $correo = $_SESSION['correo'];
+  $ID_Usuario = $_SESSION['ID_Usuario'];
+}else {};
+if (isset($usuario)) {
+  $cliente = $usuario;
+} else {
+  echo '
+  
+  
+  <div style="display: flex;
+  justify-content: center;
+  align-items: center;">
+  <h1>NO DEBERIAS ESTAR AQUÍ
+  <img class="rounded mx-auto d-block" style="display:block;
+  margin:auto;width: 50px;" src="../../images/preocupado.png">
+  </div>
+  </h1>
+  
+  ';
+  echo "
+<script>
+      function redireccionar(){
+      window.location.href = '../../index.php';}
+      setTimeout('redireccionar()', 1200);
+  </script>";
+  die();
+}
 ?>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">

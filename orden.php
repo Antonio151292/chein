@@ -1,5 +1,29 @@
 <?php
 include 'header.php';
+if (isset($usuario)) {
+    $cliente = $usuario;
+} else {
+    echo '
+    
+    
+    <div style="display: flex;
+    justify-content: center;
+    align-items: center;">
+    <h1>NO DEBERIAS ESTAR AQUÍ
+    <img class="rounded mx-auto d-block" style="display:block;
+    margin:auto;width: 50px;" src="images/preocupado.png">
+    </div>
+    </h1>
+    
+    ';
+    echo "
+ <script>
+        function redireccionar(){
+        window.location.href = 'index.php';}
+        setTimeout('redireccionar()', 1200);
+    </script>";
+    die();
+}
 ?>
 
 <body>

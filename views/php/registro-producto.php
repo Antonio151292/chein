@@ -25,8 +25,18 @@ $sqlusuario = "INSERT into producto(ID_CategoriaProducto,ID_TipoProducto,ID_Tall
    VALUES ('$CategoriaProducto','$TipoProducto','$TallaProducto','$MarcaProducto','$NombreProducto','$Stock','$Precio','$Descripcion','$ImagenProducto')";
 $INSERCION = mysqli_query($conexion, $sqlusuario);
 echo "
-<script>
-  alert('Registro exitoso');
-  window.location = '../admin/registro.php'
-</script>";
+    <body>
+        <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Registro éxitoso',
+            showConfirmButton: false,
+        })
+        </script>
+    </body>
+    <script>
+        function redireccionar(){
+        window.location.href = '../admin/registro.php';}
+        setTimeout('redireccionar()', 1000);
+    </script>";
 ?>

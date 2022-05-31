@@ -16,21 +16,32 @@ if (isset($_POST['Email']) && isset($_POST['Password'])) {
         if ($print['ID_TipoUsuario'] == 1) {
             session_start();
             $_SESSION['ID_TipoUsuario']  = '1';
-            $_SESSION['correo']  = $correo;
-            $_SESSION['ID_Usuario'] = $ID_usuario;
+            $_SESSION['correo']  = $mail;
+            $_SESSION['ID_Usuario'] = $ID_user;
             header('location:..\..\index.php');
         }
         // Si type_user es 2 accede a admin
         if ($print['ID_TipoUsuario'] == 2) {
             session_start();
             $_SESSION['ID_TipoUsuario']  = '2';
-            $_SESSION['correo']  = $correo;
-            $_SESSION['ID_Usuario'] = $ID_usuario;
+            $_SESSION['correo']  = $mail;
+            $_SESSION['ID_Usuario'] = $ID_user;
             header('location:..\admin\index.php');
         }
     }
-    echo "<script>
-        alert('El usuario o contraseña no existen');
-        window.location = '../../index.php';
-        </script>";
+    echo "
+    <body>
+        <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'El usuario o contraseña no existe',
+            showConfirmButton: false,
+        })
+        </script>
+    </body>
+    <script>
+        function redireccionar(){
+        window.location.href = '../../index.php';}
+        setTimeout('redireccionar()', 1000);
+    </script>";
 }
